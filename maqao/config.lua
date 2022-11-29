@@ -4,7 +4,7 @@
 -- Template of configuration file for oneview module
 
 experiment_name = "Code_Saturne"
-executable      = "/userdir/home/fsantoro/saturne/Code_Saturne/bin/code_saturne"
+executable      = "/userdir/home/fsantoro/saturne/Code_Saturne/libexec/code_saturne/cs_solver"
 
 -- List of external libraries to analyze
 external_libraries = {
@@ -34,7 +34,7 @@ custom_categories = {
 -- specific command is required to run the application
 -- run_command    = "<executable> -A,T=<TBB_NUM_THREADS> -A,ThreadBindingStrategy=Simple -A,MaxIteration=200 /home/fix/pattern4gpu/tests/p4gpu_compute_cqs/ComputeCqs100x100x100Ori.arc"
 -- run_command    = "<executable> -A,MaxIteration=100 /home/fiona/Documents/stage/arcane/pattern4gpu/tests/p4gpu_compute_cqs/<FUNC>"
-run_command = "<executable>"
+run_command = "<executable> --wdir "/userdir/home/fsantoro/saturne/saturne-open-cases/BUNDLE/BENCH_C016_PREPROCESS/RESU/extrude_16/" --trace"
 
 -- Script to use with job scheduler. 
 -- If your application must be run on a cluster using a job scheduler (ex. SLURM), fill
@@ -76,8 +76,6 @@ number_processes_per_node = 1
 --   example: "mpirun -n <number_processes>"
 -- Use an empty string or remove the declaration if no 
 -- specific command prefix is required to run the application
--- mpi_command    = "ccc_mprun -p milan-bxi -n <number_processes> -c 128 -x -E --enable_perf"
--- mpi_command    = "/home/fix/mpich-install/bin/mpirun -n <number_processes>"
 
 -- /!\ omp_num_threads variable is not handled anymore to set up OpenMP environment variable OMP_NUM_THREADS.
 -- To setup the number of processes, you have to either:

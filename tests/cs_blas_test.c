@@ -37,8 +37,11 @@
 #if defined(HAVE_MKL)
 #include <mkl_cblas.h>
 
-#elif defined(HAVE_ATLAS) || defined(HAVE_CBLAS)
+#elif defined(HAVE_ATLAS) || defined(HAVE_CBLAS) 
 #include <cblas.h>
+
+#elif defined(HAVE_ARMPL)
+#include <armpl.h>
 
 #endif
 
@@ -69,6 +72,8 @@ const char ext_blas_type[] = "ATLAS";
 const char ext_blas_type[] = "MKL";
 #elif defined(HAVE_BLAS)
 const char ext_blas_type[] = "external";
+#elif defined(HAVE_ARMPL)
+const char ext_blas_type[] = "ARM";
 #else
 const char ext_blas_type[] = "";
 #endif
@@ -523,7 +528,7 @@ _dot_product_1(double   t_measure,
 
     /* First simple local x.x version */
 
-#if defined(HAVE_ATLAS) || defined(HAVE_CBLAS) ||defined(HAVE_MKL)
+#if defined(HAVE_ATLAS) || defined(HAVE_CBLAS) ||defined(HAVE_MKL) || defined(HAVE_ARMPL)
 
     for (sub_id = 0; sub_id < _n_sizes; sub_id++) {
 
@@ -955,7 +960,7 @@ _axpy_test(double  t_measure)
 
   /* First simple local x.x version */
 
-#if defined(HAVE_ATLAS) || defined(HAVE_CBLAS) ||defined(HAVE_MKL)
+#if defined(HAVE_ATLAS) || defined(HAVE_CBLAS) ||defined(HAVE_MKL) || defined(HAVE_ARMPL)
 
   for (sub_id = 0; sub_id < _n_sizes; sub_id++) {
 
@@ -985,7 +990,7 @@ _axpy_test(double  t_measure)
     while (run_id < n_runs) {
       double test_sum_mult = 1.0/n_runs;
       while (run_id < n_runs) {
-#if defined(HAVE_ATLAS) || defined(HAVE_CBLAS) || defined(HAVE_MKL)
+#if defined(HAVE_ATLAS) || defined(HAVE_CBLAS) || defined(HAVE_MKL) || defined(HAVE_ARMPL)
         cblas_daxpy(n, test_sum_mult, x, 1, y, 1);
 #endif
         test_sum += test_sum_mult*y[run_id%n];
@@ -2899,6 +2904,10 @@ main (int argc, char *argv[])
     s = cblas_ddot(n, x, 1, y, 1);
     bft_printf("  %-22s dot product error for n = %7d: %12.5e\n",
                "C BLAS", (int)n, ref_s - s);
+#elif defined(HAVE_ARMPL)
+    s = cblas_ddot(n, x, 1, y, 1);
+    bft_printf("  %-22s dot product error for n = %7d: %12.5e\n",
+               "ARMPL", (int)n, ref_s - s);               
 #endif
 
     bft_printf("\n");

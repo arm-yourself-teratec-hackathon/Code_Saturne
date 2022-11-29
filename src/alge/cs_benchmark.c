@@ -58,6 +58,8 @@
 #elif defined(HAVE_CBLAS)
 #include <cblas.h>
 
+#elif defined(HAVE_ARMPL)
+#include <armpl.h>
 #endif
 
 /*----------------------------------------------------------------------------
@@ -113,7 +115,7 @@ BEGIN_C_DECLS
  * Local Macro Definitions
  *============================================================================*/
 
-#if defined(HAVE_CBLAS) || defined (HAVE_MKL)
+#if defined(HAVE_CBLAS) || defined (HAVE_MKL) || defined (HAVE_ARMPL)
 #define HAVE_BLAS 1
 #endif
 

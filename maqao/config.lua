@@ -4,10 +4,15 @@
 -- Template of configuration file for oneview module
 
 experiment_name = "Code_Saturne"
-executable      = "/userdir/home/fsantoro/saturne/Code_Saturne/libexec/code_saturne/cs_solver"
+executable      = "/usr/bin/python3"
 
 -- List of external libraries to analyze
 external_libraries = {
+   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libcs_solver.so",
+   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libple.so",
+   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libple.so.2",
+   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libsaturne.so"
+
 }
 -- List of external categories to analyze in LPROF.
 -- If nil, one category is created for each entry in external_libraries.
@@ -34,7 +39,7 @@ custom_categories = {
 -- specific command is required to run the application
 -- run_command    = "<executable> -A,T=<TBB_NUM_THREADS> -A,ThreadBindingStrategy=Simple -A,MaxIteration=200 /home/fix/pattern4gpu/tests/p4gpu_compute_cqs/ComputeCqs100x100x100Ori.arc"
 -- run_command    = "<executable> -A,MaxIteration=100 /home/fiona/Documents/stage/arcane/pattern4gpu/tests/p4gpu_compute_cqs/<FUNC>"
-run_command = "<executable> --wdir "/userdir/home/fsantoro/saturne/saturne-open-cases/BUNDLE/BENCH_C016_PREPROCESS/RESU/extrude_16/" --trace"
+run_command = "<executable> /userdir/home/fsantoro/saturne/Code_Saturne/bin/code_saturne submit"
 
 -- Script to use with job scheduler. 
 -- If your application must be run on a cluster using a job scheduler (ex. SLURM), fill

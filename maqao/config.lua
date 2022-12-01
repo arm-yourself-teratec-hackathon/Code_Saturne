@@ -8,10 +8,10 @@ executable      = "/usr/bin/python3"
 
 -- List of external libraries to analyze
 external_libraries = {
-   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libcs_solver.so",
+   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libcs_solver-7.2.so",
    "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libple.so",
    "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libple.so.2",
-   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libsaturne.so"
+   "/userdir/home/fsantoro/saturne/Code_Saturne/lib/libsaturne-7.2.so"
 
 }
 -- List of external categories to analyze in LPROF.

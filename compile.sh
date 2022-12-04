@@ -8,6 +8,19 @@ else
     echo "Usage : source $0" && exit 0
 fi
 
+
+if [ ! -f configure ]; then
+echo "No configure ... please run ./sbin/bootstrap";
+# ./sbin/bootstrap
+return 0
+fi
+
+module load openmpi/acfl/4.1.4
+
+command -v mpicc >/dev/null 2>&1 || { echo >&2 "mpicc was not found"; return 0; }
+command -v mpic++ >/dev/null 2>&1 || { echo >&2 "mpic++ was not found"; return 0; }
+command -v mpifort >/dev/null 2>&1 || { echo >&2 "mpifort was not found"; return 0; }
+
 export DEST="$HOME/code_saturne_7.2.0"
 export CC="mpicc"
 export CXX="mpic++"

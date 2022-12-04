@@ -352,22 +352,22 @@ else
     linux* )
       if test "x$auto_flags" = "xyes" ; then
 	case "$cs_ac_cc_version" in
-	  Cray* )
+	  Cray* | nvc*)
 	    CFLAGS="${CFLAGS} -fPIC"
-	    ;;
+       ;;
 	  *)
 	    LDFLAGS="${LDFLAGS} -Wl,-export-dynamic"
 	    ;;
 	esac
 	case "$cs_ac_cxx_version" in
-	  Cray* )
+	  Cray* | nvc*)
 	    CXXFLAGS="${CXXFLAGS} -fPIC"
-	    ;;
+      ;;
 	  *)
 	    ;;
 	esac
 	case "$cs_ac_fc_version" in
-	  Cray* )
+	  Cray* | nvc*)
 	    FCFLAGS="${FCFLAGS} -fPIC"
 	    ;;
 	  *)

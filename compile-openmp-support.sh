@@ -22,13 +22,13 @@ command -v mpicc >/dev/null 2>&1 || { echo >&2 "mpicc was not found"; return 0; 
 command -v mpic++ >/dev/null 2>&1 || { echo >&2 "mpic++ was not found"; return 0; }
 command -v mpifort >/dev/null 2>&1 || { echo >&2 "mpifort was not found"; return 0; }
 
-export DEST="$HOME/Code_Saturne/install"
+export DEST="$HOME/Code_Saturne/install-openmp"
 export CC="mpicc"
 export CXX="mpic++"
 export FC="mpifort"
 
 mkdir -p build && cd build
-../configure CC="$CC" CXX="$CXX" FC="$FC" --prefix="$DEST" --disable-gui --without-med --without-hdf5 --without-cgns --without-metis --disable-salome --without-salome --without-eos --disable-static --enable-long-gnum
+../configure CC="$CC" CXX="$CXX" FC="$FC" --prefix="$DEST" --disable-gui --without-med --without-hdf5 --without-cgns --without-metis --disable-salome --without-salome --without-eos --disable-static --enable-long-gnum --enable-openmp-target
 
 make -j7
 make install
